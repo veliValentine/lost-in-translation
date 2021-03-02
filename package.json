@@ -27,7 +27,8 @@
     "rules": {
       "no-unused-vars": "warn",
       "no-console": "off",
-      "linebreak-style": "off"
+      "linebreak-style": "off",
+      "react/prop-types": "off"
     }
   },
   "browserslist": {
