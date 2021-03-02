@@ -5,7 +5,7 @@ const Form = ({ onSubmit, placeholder = '', buttonText = '' }) => {
 
   const submit = (event) => {
     event.preventDefault();
-    onSubmit(value);
+    onSubmit(value.trim());
     setValue('');
   };
   return (

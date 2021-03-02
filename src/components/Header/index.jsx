@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.css';
 
-const Header = ({ user, logout }) => {
+const Header = ({ user }) => {
   const loggedUser = () => (
     <div>
-      <p>{`Hello ${user}. Link to userpage`}</p>
-      <button type="submit" onClick={logout}>Logout</button>
+      <Link to="/user">
+        <p>{`Hello ${user}. Link to userpage`}</p>
+      </Link>
+      <Link to="/logout">Logout</Link>
     </div>
   );
   return (

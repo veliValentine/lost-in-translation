@@ -16,9 +16,11 @@ const Translation = ({ input }) => {
 const TranslationPage = ({ addTranslation }) => {
   const [translation, setTranslation] = useState('');
 
-  const submitTranslation = (inputTranslation) => {
-    setTranslation(inputTranslation);
-    addTranslation(inputTranslation);
+  const submitTranslation = (inputTranslation = '') => {
+    if (inputTranslation !== '') {
+      setTranslation(inputTranslation);
+      addTranslation(inputTranslation);
+    }
   };
 
   return (
