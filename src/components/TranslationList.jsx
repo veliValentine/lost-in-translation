@@ -6,7 +6,7 @@ const TranslationList = ({ translations = [] }) => {
   }
   return (
     <div className="translation-list">
-      <h3>Translations:</h3>
+      <h3>Translation history:</h3>
       <ul>
         {translations.map((translationItem, index) => (
           // eslint-disable-next-line react/no-array-index-key
