@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Form from './Form';
 
 const Translation = ({ input }) => {
   const translatedString = input.split('')
@@ -12,26 +13,6 @@ const Translation = ({ input }) => {
   );
 };
 
-const TranslationForm = ({ onSubmit }) => {
-  const [translation, setTranslation] = useState('');
-
-  const submitTranslation = (e) => {
-    e.preventDefault();
-    onSubmit(translation);
-    setTranslation('');
-  };
-  return (
-    <form onSubmit={submitTranslation}>
-      <input
-        value={translation}
-        onChange={(e) => setTranslation(e.target.value)}
-        placeholder="Translation"
-      />
-      <button type="submit">Translate</button>
-    </form>
-  );
-};
-
 const TranslationPage = ({ addTranslation }) => {
   const [translation, setTranslation] = useState('');
 
@@ -39,10 +20,11 @@ const TranslationPage = ({ addTranslation }) => {
     setTranslation(inputTranslation);
     addTranslation(inputTranslation);
   };
+
   return (
     <div className="translation-page">
       <h1>Translation page</h1>
-      <TranslationForm onSubmit={submitTranslation} />
+      <Form onSubmit={submitTranslation} placeholder="Translation" buttonText="Translate" />
       <Translation input={translation} />
     </div>
   );
