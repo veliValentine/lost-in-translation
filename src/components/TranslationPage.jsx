@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Form from './Form';
 
-const Translation = ({ input }) => {
+const Translation = ({ input = '' }) => {
+  if (input === '') {
+    return null;
+  }
   const translatedString = input.split('')
     .map((letter) => letter); // TODO convert letter to correct sign image
-
   return (
     <div>
       <p>Translation:</p>
@@ -16,7 +18,7 @@ const Translation = ({ input }) => {
 const TranslationPage = ({ addTranslation }) => {
   const [translation, setTranslation] = useState('');
 
-  const submitTranslation = (inputTranslation = '') => {
+  const submitTranslation = (inputTranslation) => {
     if (inputTranslation !== '') {
       setTranslation(inputTranslation);
       addTranslation(inputTranslation);
