@@ -7,23 +7,13 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import LoginPage from './components/LoginPage';
 import Logout from './components/Logout';
-import TranslationList from './components/TranslationList';
+import ProfilePage from './components/ProfilePage';
 import TranslationPage from './components/TranslationPage';
 
 const App = () => {
-  const [user, setUser] = useState(null);
   const [translations, setTranslations] = useState([]);
+  const [user, setUser] = useState(null);
   const history = useHistory();
-
-  const login = (username = null) => {
-    setUser(username);
-    history.push('/');
-  };
-
-  const logout = () => {
-    setUser(null);
-    setTranslations([]);
-  };
 
   const addTranslation = (translation) => {
     const newTranslationArray = translations.concat(translation);
@@ -32,7 +22,21 @@ const App = () => {
     }
     setTranslations(newTranslationArray);
   };
-  console.log(translations);
+
+  const clearTranslations = () => {
+    setTranslations([]);
+  };
+
+  const login = (username = null) => {
+    setUser(username);
+    history.push('/');
+  };
+
+  const logout = () => {
+    setUser(null);
+    clearTranslations();
+  };
+
   return (
     <div>
       {!user && <Redirect to="/login" />}
@@ -45,7 +49,11 @@ const App = () => {
           <Logout logout={logout} />
         </Route>
         <Route path="/user">
-          <TranslationList translations={translations} />
+          <ProfilePage
+            user={user}
+            translations={translations}
+            clearTranslations={clearTranslations}
+          />
         </Route>
         <Route path="/">
           <TranslationPage translations={translations} addTranslation={addTranslation} />
