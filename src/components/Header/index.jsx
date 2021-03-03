@@ -6,15 +6,15 @@ const Header = ({ user }) => {
   const loggedUser = () => (
     <div>
       <Link to="/user">
-        <p>{`Hello ${user}. Link to userpage`}</p>
+        <p>{`Hello ${user}`}</p>
       </Link>
-      <Link to="/logout">Logout</Link>
     </div>
   );
   return (
     <>
       <div className="header">
         <h3>Lost in translation</h3>
+        {user && <Link to="/">Home</Link>}
         {user && loggedUser()}
       </div>
       <hr />
