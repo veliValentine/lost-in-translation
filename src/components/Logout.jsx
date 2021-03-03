@@ -8,8 +8,8 @@ const Logout = ({ logout }) => {
   const loggingOut = () => {
     clearTimeout(timeOutId);
     timeOutId = setTimeout(() => {
-      logout();
       history.push('/login');
+      logout();
     }, 3 * 1000);
   };
 
