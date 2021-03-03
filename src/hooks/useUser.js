@@ -1,29 +1,31 @@
 import { useState, useEffect } from 'react';
 import { getStorage, updateStorage } from '../utils/localStorage';
 
+const getUserFromStorage = () => {
+  const storage = getStorage();
+  if (storage) {
+    const { user = null } = storage;
+    return user;
+  }
+  return null;
+};
+
 const useUser = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storage = getStorage();
-    if (storage) {
-      const { user: sessionUser = null } = storage;
-      setUser(sessionUser);
-    }
+    setUser(getUserFromStorage());
   }, []);
 
-  const clearUser = () => {
-    updateStorage({ user: null });
-    setUser(null);
+  const updateUser = (username = null) => {
+    if (username !== user) {
+      setUser(username);
+      updateStorage({ user: username, translations: [] });
+    }
   };
 
-  const updateUser = (username) => {
-    if (!username) {
-      return false;
-    }
-    setUser(username);
-    updateStorage({ user: username });
-    return true;
+  const clearUser = () => {
+    updateUser(null);
   };
 
   return [user, updateUser, clearUser];
