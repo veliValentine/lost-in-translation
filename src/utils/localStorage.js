@@ -1,10 +1,23 @@
-export const setStorage = (key, value) => {
+const key = 'sessioObject';
+
+export const setStorage = (value) => {
   const encrypted = btoa(JSON.stringify(value));
-  localStorage.setItem(key, encrypted);
+  localStorage.setItem(`LOST_IN_TRANSLATION:${key}`, encrypted);
 };
 
-export const getStorage = (key) => {
-  const storedValue = localStorage.getItem(key);
+export const getStorage = () => {
+  const storedValue = localStorage.getItem(`LOST_IN_TRANSLATION:${key}`);
   if (!storedValue) return false;
   return JSON.parse(atob(storedValue));
+};
+
+export const updateStorage = (value) => {
+  const storedValue = getStorage();
+  const newObject = { ...storedValue, ...value };
+  setStorage(newObject);
+  return true;
+};
+
+export const clearStorage = () => {
+  setStorage({});
 };
