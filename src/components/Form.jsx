@@ -5,8 +5,11 @@ const Form = ({ onSubmit, placeholder = '', buttonText = '' }) => {
 
   const submit = (event) => {
     event.preventDefault();
-    onSubmit(value.trim());
-    setValue('');
+    const parsedValue = value.trim();
+    if (parsedValue !== '') {
+      onSubmit(parsedValue);
+      setValue('');
+    }
   };
   return (
     <form onSubmit={submit}>
