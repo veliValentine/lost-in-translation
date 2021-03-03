@@ -1,29 +1,31 @@
 import { useState, useEffect } from 'react';
 import { getStorage, updateStorage } from '../utils/localStorage';
 
+const getTranslationsFromstorage = () => {
+  const storage = getStorage();
+  if (storage) {
+    const { translations = [] } = storage;
+    return translations;
+  }
+  return [];
+};
+
 const useTranslations = (user) => {
   const [translations, setTranslations] = useState([]);
 
   useEffect(() => {
     if (user) {
-      const storage = getStorage();
-      if (storage) {
-        const { translations: storageTranslations = [] } = storage;
-        setTranslations(storageTranslations);
-      } else {
-        console.log('Else statement in hook');
-        setTranslations([]);
-      }
+      setTranslations(getTranslationsFromstorage());
     }
   }, [user]);
 
   const addTranslation = (translation) => {
-    const newArray = translations.concat(translation);
-    while (newArray.length > 10) {
-      newArray.shift();
+    const translationList = [translation].concat(getTranslationsFromstorage());
+    while (translationList.length > 10) {
+      translationList.pop();
     }
-    setTranslations(newArray);
-    updateStorage({ translations: newArray });
+    setTranslations(translationList);
+    updateStorage({ translations: translationList });
   };
 
   const clearTranslations = () => {

@@ -4,13 +4,13 @@ import {
 } from 'react-router-dom';
 
 import useUser from './hooks/useUser';
+import useTranslations from './hooks/useTranslations';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import TranslationPage from './components/TranslationPage';
-import useTranslations from './hooks/useTranslations';
 
 const App = () => {
   const [user, updateUser, clearUser] = useUser();
