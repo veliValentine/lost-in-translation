@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Form from './Form';
+
 import getSignImages from '../utils/getSignImages';
-import parseInput from '../utils';
+import { parseInput } from '../utils';
+import authenticated from '../utils/authenticated';
 
 const signs = getSignImages();
 
@@ -41,4 +43,4 @@ const Translation = ({ input = '' }) => {
   );
 };
 
-export default TranslationPage;
+export default authenticated(TranslationPage);

@@ -1,8 +1,15 @@
-const parseInput = (input) => (
+import { getStorage } from './localStorage';
+
+export const parseInput = (input) => (
   input
     .toLowerCase()
     .replaceAll(/[^a-z]/g, '')
 );
 
-// remove and refactor to export const when more util functions
-export default parseInput;
+export const userLoggedIn = (user) => {
+  const { user: storageUser } = getStorage();
+  if (user === storageUser) {
+    return true;
+  }
+  return false;
+};
