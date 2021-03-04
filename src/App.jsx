@@ -10,6 +10,8 @@ import ProfilePage from './components/ProfilePage';
 import TranslationPage from './components/TranslationPage';
 import ErrorPage from './components/ErrorPage';
 
+import './App.css';
+
 const App = () => {
   const [user, updateUser] = useUser();
   const [translations, addTranslation, clearTranslations] = useTranslations(user);

@@ -1,25 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './index.css';
+import './header.css';
 
-const Header = ({ user }) => {
-  const loggedUser = () => (
-    <div>
-      <Link to="/user">
-        <p>{`Hello ${user}`}</p>
-      </Link>
+const Header = ({ user }) => (
+  <div>
+    <div className="header">
+      <h2>Lost in translation</h2>
+      <p>{user && <Link to="/">Home</Link>}</p>
+      <p>{user && <Link to="/user">{user}</Link>}</p>
     </div>
-  );
-  return (
-    <>
-      <div className="header">
-        <h3>Lost in translation</h3>
-        {user && <Link to="/">Home</Link>}
-        {user && loggedUser()}
-      </div>
-      <hr />
-    </>
-  );
-};
+    <hr />
+  </div>
+);
 
 export default Header;

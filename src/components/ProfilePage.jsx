@@ -10,8 +10,8 @@ const ProfilePage = ({ translations = [], clearTranslations, logout }) => {
 
   return (
     <div className="profile-page">
-      <button id="logout-button" onClick={logout} type="submit">Logout</button>
       <h2>Profile page</h2>
+      <button id="logout-button" onClick={logout} type="submit">Logout</button>
       {translations.length > 0 && <button type="submit" onClick={handleClick}>Clear history</button>}
       <TranslationList translations={translations} />
     </div>

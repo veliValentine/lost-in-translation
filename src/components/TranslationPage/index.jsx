@@ -30,9 +30,8 @@ const TranslationPage = ({ addTranslation }) => {
 const Translation = ({ input = '' }) => {
   const parsedWords = parseInput(input);
   if (parsedWords === '') {
-    return null;
+    return <div className="translation-container">Nothing to translate</div>;
   }
-  console.log(parsedWords);
   const words = parsedWords.split(/[\s]+/);
   console.log(words);
   const translations = words.map((word, index) => (
