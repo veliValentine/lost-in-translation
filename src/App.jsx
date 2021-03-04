@@ -1,13 +1,53 @@
 import React from 'react';
+import {
+  Redirect, Route, Switch, useHistory,
+} from 'react-router-dom';
+
+import useUser from './hooks/useUser';
+import useTranslations from './hooks/useTranslations';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
+import LoginPage from './components/LoginPage';
+import ProfilePage from './components/ProfilePage';
+import TranslationPage from './components/TranslationPage';
+import authenticated from './utils/authenticated';
 
 const App = () => {
-  console.log('Hello');
+  const [user, updateUser, clearUser] = useUser();
+  const [translations, addTranslation, clearTranslations] = useTranslations(user);
+  const history = useHistory();
+
+  const login = (username = null) => {
+    updateUser(username);
+    history.push('/');
+  };
+  authenticated()();
+  const logout = () => {
+    clearUser();
+    clearTranslations();
+  };
+
   return (
     <div>
-      <Header />
+      {!user && <Redirect to="/login" />}
+      <Header user={user} />
+      <Switch>
+        <Route path="/login">
+          <LoginPage login={login} user={user} />
+        </Route>
+        <Route path="/user">
+          <ProfilePage
+            user={user}
+            translations={translations}
+            clearTranslations={clearTranslations}
+            logout={logout}
+          />
+        </Route>
+        <Route path="/">
+          <TranslationPage translations={translations} addTranslation={addTranslation} />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   );

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.0"
   },
@@ -25,8 +26,12 @@
       "airbnb/hooks"
     ],
     "rules": {
+      "linebreak-style": "off",
       "no-unused-vars": "warn",
-      "no-console": "off"
+      "no-console": "off",
+      "no-array-index-key": "off",
+      "react/prop-types": "off",
+      "react/jsx-props-no-spreading": "off"
     }
   },
   "browserslist": {
