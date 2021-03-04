@@ -2,7 +2,7 @@ import React from 'react';
 
 const TranslationList = ({ translations = [] }) => {
   if (translations.length < 1) {
-    return null;
+    return <p>No translation history</p>;
   }
   return (
     <div className="translation-list">
