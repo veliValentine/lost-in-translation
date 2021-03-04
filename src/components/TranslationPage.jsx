@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import Form from './Form';
 
 import { convertWordToSignImages } from '../utils/signImages';
@@ -6,7 +8,8 @@ import { parseInput } from '../utils';
 import authenticated from '../utils/authenticated';
 
 const TranslationPage = ({ addTranslation }) => {
-  const [translation, setTranslation] = useState('');
+  const { word = '' } = useParams();
+  const [translation, setTranslation] = useState(word);
   const submitTranslation = (input) => {
     if (input !== '') {
       setTranslation(input);

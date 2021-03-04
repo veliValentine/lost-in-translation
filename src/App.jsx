@@ -1,5 +1,10 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import {
+  Link,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 
 import useUser from './hooks/useUser';
 import useTranslations from './hooks/useTranslations';
@@ -34,8 +39,14 @@ const App = () => {
             logout={logout}
           />
         </Route>
-        <Route path="/">
+        <Route path={['/', '/translate/:word']} exact>
           <TranslationPage addTranslation={addTranslation} />
+        </Route>
+        <Route path="*">
+          <div className="error-page">
+            <h3>There was an unexpected error</h3>
+            <Link to="/">Home</Link>
+          </div>
         </Route>
       </Switch>
     </div>
