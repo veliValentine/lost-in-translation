@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Link,
-  Route,
-  Switch,
-  useHistory,
-} from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import useUser from './hooks/useUser';
 import useTranslations from './hooks/useTranslations';
@@ -13,6 +8,7 @@ import Header from './components/Header';
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import TranslationPage from './components/TranslationPage';
+import ErrorPage from './components/ErrorPage';
 
 const App = () => {
   const [user, updateUser] = useUser();
@@ -43,10 +39,7 @@ const App = () => {
           <TranslationPage addTranslation={addTranslation} />
         </Route>
         <Route path="*">
-          <div className="error-page">
-            <h3>There was an unexpected error</h3>
-            <Link to="/">Home</Link>
-          </div>
+          <ErrorPage />
         </Route>
       </Switch>
     </div>
