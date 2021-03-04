@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { getStorage, updateStorage } from '../utils/localStorage';
+import { userLoggedIn } from '../utils';
 
-const getTranslationsFromstorage = () => {
+const getTranslationsFromstorage = (user) => {
   const storage = getStorage();
-  if (storage) {
+  if (userLoggedIn(user) && storage) {
     const { translations = [] } = storage;
     return translations;
   }
@@ -15,22 +16,28 @@ const useTranslations = (user) => {
 
   useEffect(() => {
     if (user) {
-      setTranslations(getTranslationsFromstorage());
+      setTranslations(getTranslationsFromstorage(user));
     }
   }, [user]);
 
   const addTranslation = (translation) => {
-    const translationList = [translation].concat(getTranslationsFromstorage());
+    const translationList = [translation].concat(getTranslationsFromstorage(user));
     while (translationList.length > 10) {
       translationList.pop();
     }
     setTranslations(translationList);
-    updateStorage({ translations: translationList });
+    if (userLoggedIn(user)) {
+      updateStorage({ translations: translationList });
+      console.log('update storage');
+    }
   };
 
   const clearTranslations = () => {
     setTranslations([]);
-    updateStorage({ translations: [] });
+    if (userLoggedIn(user)) {
+      updateStorage({ translations: [] });
+      console.log('cleared storage');
+    }
   };
 
   return [translations, addTranslation, clearTranslations];
