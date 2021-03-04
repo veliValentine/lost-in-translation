@@ -1,7 +1,8 @@
 export const parseInput = (input) => (
   input
     .toLowerCase()
-    .replaceAll(/[^a-z]/g, '')
+    .replaceAll(/[^a-z\s]/g, '')
+    .trim()
 );
 
 export default parseInput;
