@@ -13,6 +13,7 @@ export const getStorage = () => {
 
 export const updateStorage = (value) => {
   const storedValue = getStorage();
+  if (!storedValue) return false;
   const newObject = { ...storedValue, ...value };
   setStorage(newObject);
   return true;

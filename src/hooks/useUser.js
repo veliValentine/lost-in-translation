@@ -1,14 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getStorage, updateStorage } from '../utils/localStorage';
-
-const getUserFromStorage = () => {
-  const storage = getStorage();
-  if (storage) {
-    const { user = null } = storage;
-    return user;
-  }
-  return null;
-};
+import { getUserFromStorage } from '../utils/storageHelpers';
+import { updateStorage } from '../utils/localStorage';
 
 const useUser = () => {
   const [user, setUser] = useState(null);

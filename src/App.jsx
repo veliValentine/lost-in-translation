@@ -4,7 +4,6 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 import useUser from './hooks/useUser';
 import useTranslations from './hooks/useTranslations';
 
-import Footer from './components/Footer';
 import Header from './components/Header';
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
@@ -20,29 +19,25 @@ const App = () => {
     updateUser(username);
     history.push('/');
   };
-  const logout = () => {
-    login();
-  };
+  const logout = () => login();
   return (
     <div>
       <Header user={user} />
       <Switch>
         <Route path="/login">
-          <LoginPage login={login} user={user} logout={logout} />
+          <LoginPage login={login} />
         </Route>
         <Route path="/user">
           <ProfilePage
-            user={user}
             translations={translations}
             clearTranslations={clearTranslations}
             logout={logout}
           />
         </Route>
         <Route path="/">
-          <TranslationPage translations={translations} addTranslation={addTranslation} />
+          <TranslationPage addTranslation={addTranslation} />
         </Route>
       </Switch>
-      <Footer />
     </div>
   );
 };

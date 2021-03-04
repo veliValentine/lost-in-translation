@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getStorage, updateStorage } from '../utils/localStorage';
-import { userLoggedIn } from '../utils';
-
-const getTranslationsFromstorage = (user) => {
-  const storage = getStorage();
-  if (userLoggedIn(user) && storage) {
-    const { translations = [] } = storage;
-    return translations;
-  }
-  return [];
-};
+import { updateStorage } from '../utils/localStorage';
+import { getTranslationsFromstorage, userLoggedIn } from '../utils/storageHelpers';
 
 const useTranslations = (user) => {
   const [translations, setTranslations] = useState([]);
@@ -21,13 +12,14 @@ const useTranslations = (user) => {
   }, [user]);
 
   const addTranslation = (translation) => {
-    const translationList = [translation].concat(getTranslationsFromstorage(user));
-    while (translationList.length > 10) {
-      translationList.pop();
+    const storedTranslations = getTranslationsFromstorage(user);
+    const newTranslations = [translation].concat(storedTranslations);
+    while (newTranslations.length > 10) {
+      newTranslations.pop();
     }
-    setTranslations(translationList);
+    setTranslations(newTranslations);
     if (userLoggedIn(user)) {
-      updateStorage({ translations: translationList });
+      updateStorage({ translations: newTranslations });
     }
   };
 

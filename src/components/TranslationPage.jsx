@@ -26,8 +26,7 @@ const Translation = ({ input = '' }) => {
   if (input === '') {
     return null;
   }
-  const words = input.split(' ')
-    .filter((word) => word !== '')
+  const words = input.split(/[\s]+/)
     .map(parseInput);
   const translations = words.map((word, index) => (
     // eslint-disable-next-line react/no-array-index-key
