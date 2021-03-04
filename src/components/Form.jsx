@@ -5,9 +5,9 @@ const Form = ({ onSubmit, placeholder = '', buttonText = '' }) => {
 
   const submit = (event) => {
     event.preventDefault();
-    const parsedValue = value.trim();
-    if (parsedValue !== '') {
-      onSubmit(parsedValue);
+    const trimmedValue = value.trim();
+    if (trimmedValue !== '') {
+      onSubmit(trimmedValue);
       setValue('');
     }
   };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
 import useUser from './hooks/useUser';
@@ -14,10 +14,6 @@ const App = () => {
   const [user, updateUser] = useUser();
   const [translations, addTranslation, clearTranslations] = useTranslations(user);
   const history = useHistory();
-
-  useEffect(() => {
-    console.log('effect');
-  }, []);
 
   const login = (username = null) => {
     clearTranslations();

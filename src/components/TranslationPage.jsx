@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import Form from './Form';
 
-import getSignImages from '../utils/getSignImages';
+import { convertWordToSignImages } from '../utils/signImages';
 import { parseInput } from '../utils';
 import authenticated from '../utils/authenticated';
-
-const signs = getSignImages();
 
 const TranslationPage = ({ addTranslation }) => {
   const [translation, setTranslation] = useState('');
   const submitTranslation = (input) => {
-    const inputTranslation = parseInput(input);
-    if (inputTranslation !== '') {
-      setTranslation(inputTranslation);
-      addTranslation(inputTranslation);
+    if (input !== '') {
+      setTranslation(input);
+      addTranslation(input);
     }
   };
   return (
@@ -29,15 +26,20 @@ const Translation = ({ input = '' }) => {
   if (input === '') {
     return null;
   }
-  const translate = parseInput(input);
-  const translatedString = translate.split('')
+  const words = input.split(' ')
+    .filter((word) => word !== '')
+    .map(parseInput);
+  const translations = words.map((word, index) => (
     // eslint-disable-next-line react/no-array-index-key
-    .map((letter, index) => <img key={index} src={signs[letter]} alt="poop" />);
+    <div className="sign-word" key={`${word}-${index}`}>
+      {convertWordToSignImages(word)}
+    </div>
+  ));
   return (
     <div>
-      <p>{`${translate} translated to`}</p>
+      <p>{`${words.join(' ')} translated to`}</p>
       <div className="translation">
-        {translatedString}
+        {translations}
       </div>
     </div>
   );

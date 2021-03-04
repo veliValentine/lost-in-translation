@@ -28,7 +28,6 @@ const useTranslations = (user) => {
     setTranslations(translationList);
     if (userLoggedIn(user)) {
       updateStorage({ translations: translationList });
-      console.log('update storage');
     }
   };
 
@@ -36,7 +35,6 @@ const useTranslations = (user) => {
     setTranslations([]);
     if (userLoggedIn(user)) {
       updateStorage({ translations: [] });
-      console.log('cleared storage');
     }
   };
 
