@@ -30,10 +30,13 @@ const TranslationPage = ({ addTranslation }) => {
 const Translation = ({ input = '' }) => {
   const parsedWords = parseInput(input);
   if (parsedWords === '') {
-    return <div className="translation-container">Nothing to translate</div>;
+    return (
+      <div className="translation-container">
+        Nothing to translate
+      </div>
+    );
   }
   const words = parsedWords.split(/[\s]+/);
-  console.log(words);
   const translations = words.map((word, index) => (
     // eslint-disable-next-line react/no-array-index-key
     <div className="sign-word" key={`${word}-${index}`}>
