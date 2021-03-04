@@ -26,10 +26,12 @@
       "airbnb/hooks"
     ],
     "rules": {
+      "linebreak-style": "off",
       "no-unused-vars": "warn",
       "no-console": "off",
-      "linebreak-style": "off",
-      "react/prop-types": "off"
+      "no-array-index-key": "off",
+      "react/prop-types": "off",
+      "react/jsx-props-no-spreading": "off"
     }
   },
   "browserslist": {

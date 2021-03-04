@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import Form from './Form';
 import getSignImages from '../utils/getSignImages';
@@ -30,6 +29,7 @@ const Translation = ({ input = '' }) => {
   }
   const translate = parseInput(input);
   const translatedString = translate.split('')
+    // eslint-disable-next-line react/no-array-index-key
     .map((letter, index) => <img key={index} src={signs[letter]} alt="poop" />);
   return (
     <div>

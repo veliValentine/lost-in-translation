@@ -11,6 +11,7 @@ import Header from './components/Header';
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import TranslationPage from './components/TranslationPage';
+import authenticated from './utils/authenticated';
 
 const App = () => {
   const [user, updateUser, clearUser] = useUser();
@@ -21,7 +22,7 @@ const App = () => {
     updateUser(username);
     history.push('/');
   };
-
+  authenticated()();
   const logout = () => {
     clearUser();
     clearTranslations();
