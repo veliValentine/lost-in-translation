@@ -20,7 +20,7 @@ const App = () => {
   const login = (username = null) => {
     clearTranslations();
     updateUser(username);
-    history.push('/');
+    history.replace('/');
   };
   const logout = () => login();
   return (
