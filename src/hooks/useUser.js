@@ -13,7 +13,6 @@ const useUser = () => {
     if (username !== user) {
       setUser(username);
       setStorage({ user: username, translations: [] });
-      console.log('saved user to storage');
     }
   };
 

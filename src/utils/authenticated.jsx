@@ -4,7 +4,6 @@ import { getStorage } from './localStorage';
 
 const authenticated = (Component) => (props) => {
   const storage = getStorage();
-  console.log('auth', storage);
   if (storage.user) {
     return <Component {...props} />;
   }

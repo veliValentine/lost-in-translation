@@ -7,7 +7,6 @@ export const setStorage = (value) => {
 
 export const getStorage = () => {
   const storedValue = localStorage.getItem(`LOST_IN_TRANSLATION:${key}`);
-  console.log({ storedValue });
   if (!storedValue) return false;
   return JSON.parse(atob(storedValue));
 };
