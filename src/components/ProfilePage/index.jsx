@@ -2,6 +2,8 @@ import React from 'react';
 import TranslationList from '../TranslationList';
 import authenticated from '../../utils/authenticated';
 
+import './profilePage.css';
+
 const ProfilePage = ({ translations = [], clearTranslations, logout }) => {
   const handleClick = (event) => {
     event.preventDefault();
