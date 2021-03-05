@@ -12,7 +12,7 @@ Application translates words and short sentences to American sign language.
     - [Error page](#error-page)
   - [Usage](#usage)
   - [Getting Started with Create React App](#getting-started-with-create-react-app)
-  - 
+
 ## About
 Full task description can be found [here](./documents/JavaScript_LostInTranslation.pdf).
 
