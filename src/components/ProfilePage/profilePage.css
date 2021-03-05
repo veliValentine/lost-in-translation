@@ -1,0 +1,14 @@
+.profile-page h2 {
+  text-align: left;
+}
+
+.profile-page p {
+  font-weight: bold;
+}
+
+.translation-list {
+  background-color: wheat;
+  color: black;
+  border-radius: 20px;
+  margin: 10px;
+}

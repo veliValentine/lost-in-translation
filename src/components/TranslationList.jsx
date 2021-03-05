@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TranslationList = ({ translations = [] }) => {
   if (translations.length < 1) {
@@ -8,9 +9,9 @@ const TranslationList = ({ translations = [] }) => {
     <div className="translation-list">
       <h3>Translation history:</h3>
       <ul>
-        {translations.map((translationItem, index) => (
+        {translations.map((translation, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li key={index}>{translationItem}</li>))}
+          <li key={index}><Link to={`/translate/${translation}`}>{translation}</Link></li>))}
       </ul>
     </div>
   );

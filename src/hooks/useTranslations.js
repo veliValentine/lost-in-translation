@@ -1,15 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getStorage, updateStorage } from '../utils/localStorage';
-import { userLoggedIn } from '../utils';
-
-const getTranslationsFromstorage = (user) => {
-  const storage = getStorage();
-  if (userLoggedIn(user) && storage) {
-    const { translations = [] } = storage;
-    return translations;
-  }
-  return [];
-};
+import { parseInput } from '../utils';
+import { updateStorage } from '../utils/localStorage';
+import { getTranslationsFromstorage, userLoggedIn } from '../utils/storageHelpers';
 
 const useTranslations = (user) => {
   const [translations, setTranslations] = useState([]);
@@ -20,23 +12,27 @@ const useTranslations = (user) => {
     }
   }, [user]);
 
-  const addTranslation = (translation) => {
-    const translationList = [translation].concat(getTranslationsFromstorage(user));
-    while (translationList.length > 10) {
-      translationList.pop();
+  const addTranslation = (translation = '') => {
+    const parseTranslation = parseInput(translation);
+    if (parseTranslation === '') {
+      return false;
     }
-    setTranslations(translationList);
+    const storedTranslations = getTranslationsFromstorage(user);
+    const newTranslations = [parseTranslation].concat(storedTranslations);
+    while (newTranslations.length > 10) {
+      newTranslations.pop();
+    }
+    setTranslations(newTranslations);
     if (userLoggedIn(user)) {
-      updateStorage({ translations: translationList });
-      console.log('update storage');
+      updateStorage({ translations: newTranslations });
     }
+    return true;
   };
 
   const clearTranslations = () => {
     setTranslations([]);
     if (userLoggedIn(user)) {
       updateStorage({ translations: [] });
-      console.log('cleared storage');
     }
   };
 

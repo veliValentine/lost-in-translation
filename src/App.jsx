@@ -1,52 +1,49 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
 import useUser from './hooks/useUser';
 import useTranslations from './hooks/useTranslations';
 
-import Footer from './components/Footer';
 import Header from './components/Header';
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import TranslationPage from './components/TranslationPage';
+import ErrorPage from './components/ErrorPage';
+
+import './App.css';
 
 const App = () => {
   const [user, updateUser] = useUser();
   const [translations, addTranslation, clearTranslations] = useTranslations(user);
   const history = useHistory();
 
-  useEffect(() => {
-    console.log('effect');
-  }, []);
-
   const login = (username = null) => {
     clearTranslations();
     updateUser(username);
-    history.push('/');
+    history.replace('/');
   };
-  const logout = () => {
-    login();
-  };
+  const logout = () => login();
   return (
     <div>
       <Header user={user} />
       <Switch>
         <Route path="/login">
-          <LoginPage login={login} user={user} logout={logout} />
+          <LoginPage login={login} />
         </Route>
         <Route path="/user">
           <ProfilePage
-            user={user}
             translations={translations}
             clearTranslations={clearTranslations}
             logout={logout}
           />
         </Route>
-        <Route path="/">
-          <TranslationPage translations={translations} addTranslation={addTranslation} />
+        <Route path={['/', '/translate/:word']} exact>
+          <TranslationPage addTranslation={addTranslation} />
+        </Route>
+        <Route path="*">
+          <ErrorPage />
         </Route>
       </Switch>
-      <Footer />
     </div>
   );
 };

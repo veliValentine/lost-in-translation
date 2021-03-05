@@ -7,7 +7,7 @@ const authenticated = (Component) => (props) => {
   if (storage.user) {
     return <Component {...props} />;
   }
-  return <Redirect to="/login" />;
+  return <Redirect push to="/login" />;
 };
 
 export default authenticated;
