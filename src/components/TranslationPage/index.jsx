@@ -15,7 +15,6 @@ const TranslationPage = ({ addTranslation }) => {
 
   useEffect(() => {
     if (word !== '') {
-      console.log('push');
       history.replace('/');
     }
   }, [history, word]);
