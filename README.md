@@ -54,7 +54,7 @@ The project is build React version 11. Node.js package manager is used to downlo
 - Run commands
   - npm install
   - npm start
-- open browser to localhost:3000
+- open browser to [localhost:3000](localhost:3000)
 
 Or see [about](#About) for snippets.
 
