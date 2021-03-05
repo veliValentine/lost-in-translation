@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import useTranslation from '../../hooks/useTranslation';
 
@@ -12,9 +12,14 @@ const TranslationPage = ({ addTranslation }) => {
   const { word = '' } = useParams();
   const [translation, updateTranslation] = useTranslation(word);
   const history = useHistory();
-  if (word !== '') {
-    history.replace('/');
-  }
+
+  useEffect(() => {
+    if (word !== '') {
+      console.log('push');
+      history.replace('/');
+    }
+  }, [history, word]);
+
   const submitTranslation = (input) => {
     updateTranslation(input);
     addTranslation(input);

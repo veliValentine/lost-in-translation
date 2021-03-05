@@ -1,6 +1,6 @@
 import React from 'react';
-import TranslationList from './TranslationList';
-import authenticated from '../utils/authenticated';
+import TranslationList from '../TranslationList';
+import authenticated from '../../utils/authenticated';
 
 const ProfilePage = ({ translations = [], clearTranslations, logout }) => {
   const handleClick = (event) => {
