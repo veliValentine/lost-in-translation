@@ -1,11 +1,19 @@
+.login-page, .profile-page, .error-page {
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+}
+
 body {
   background-color: #FFC75F;
 }
+
 div {
   background-color: #FFC75F;
   color: white;
   padding: 3mm;
 }
+
 a {
   color: white;
   font-family: 'Courier New', Courier, monospace;
@@ -13,9 +21,11 @@ a {
   font-size: large;
   font-weight: bold;
 }
-h1,h2 {
+
+h1, h2 {
   text-align: center;
 }
+
 form {
   padding: 5px;
   display: flex;
@@ -27,6 +37,7 @@ input {
   border-radius: 5px;
   margin-right: 3px;
 }
+
 button {
   padding: 5px;
   border-radius: 5px;
