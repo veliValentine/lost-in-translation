@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import useTranslation from '../../hooks/useTranslation';
 
 import Form from '../Form';
-
 import { convertWordToSignImages } from '../../utils/signImages';
-import { parseInput } from '../../utils';
 import authenticated from '../../utils/authenticated';
 
 import './translationPage.css';
 
 const TranslationPage = ({ addTranslation }) => {
   const { word = '' } = useParams();
-  const [translation, setTranslation] = useState(word);
+  const [translation, updateTranslation] = useTranslation(word);
   const history = useHistory();
   if (word !== '') {
     history.replace('/');
   }
   const submitTranslation = (input) => {
-    if (input !== '') {
-      setTranslation(input);
-      addTranslation(input);
-    }
+    updateTranslation(input);
+    addTranslation(input);
   };
   return (
     <div className="translation-page">
@@ -32,15 +29,14 @@ const TranslationPage = ({ addTranslation }) => {
 };
 
 const Translation = ({ input = '' }) => {
-  const parsedWords = parseInput(input);
-  if (parsedWords === '') {
+  if (input === '') {
     return (
       <div className="translation-container">
         Nothing to translate
       </div>
     );
   }
-  const words = parsedWords.split(/[\s]+/);
+  const words = input.split(/[\s]+/);
   const translations = words.map((word, index) => (
     // eslint-disable-next-line react/no-array-index-key
     <div className="sign-word" key={`${word}-${index}`}>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { parseInput } from '../utils';
 import { updateStorage } from '../utils/localStorage';
 import { getTranslationsFromstorage, userLoggedIn } from '../utils/storageHelpers';
 
@@ -11,9 +12,13 @@ const useTranslations = (user) => {
     }
   }, [user]);
 
-  const addTranslation = (translation) => {
+  const addTranslation = (translation = '') => {
+    const parseTranslation = parseInput(translation);
+    if (parseTranslation === '') {
+      return false;
+    }
     const storedTranslations = getTranslationsFromstorage(user);
-    const newTranslations = [translation].concat(storedTranslations);
+    const newTranslations = [parseTranslation].concat(storedTranslations);
     while (newTranslations.length > 10) {
       newTranslations.pop();
     }
@@ -21,6 +26,7 @@ const useTranslations = (user) => {
     if (userLoggedIn(user)) {
       updateStorage({ translations: newTranslations });
     }
+    return true;
   };
 
   const clearTranslations = () => {
