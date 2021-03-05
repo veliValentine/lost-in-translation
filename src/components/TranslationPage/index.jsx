@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import Form from '../Form';
 
@@ -12,6 +12,10 @@ import './translationPage.css';
 const TranslationPage = ({ addTranslation }) => {
   const { word = '' } = useParams();
   const [translation, setTranslation] = useState(word);
+  const history = useHistory();
+  if (word !== '') {
+    history.replace('/');
+  }
   const submitTranslation = (input) => {
     if (input !== '') {
       setTranslation(input);
