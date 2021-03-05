@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getUserFromStorage } from '../utils/storageHelpers';
-import { updateStorage } from '../utils/localStorage';
+import { setStorage } from '../utils/localStorage';
 
 const useUser = () => {
   const [user, setUser] = useState(null);
@@ -12,7 +12,8 @@ const useUser = () => {
   const updateUser = (username = null) => {
     if (username !== user) {
       setUser(username);
-      updateStorage({ user: username, translations: [] });
+      setStorage({ user: username, translations: [] });
+      console.log('saved user to storage');
     }
   };
 

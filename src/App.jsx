@@ -16,8 +16,10 @@ const App = () => {
   const [user, updateUser] = useUser();
   const [translations, addTranslation, clearTranslations] = useTranslations(user);
   const history = useHistory();
+  console.log('app user', user);
 
   const login = (username = null) => {
+    console.log({ username });
     clearTranslations();
     updateUser(username);
     history.push('/');
